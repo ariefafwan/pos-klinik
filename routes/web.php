@@ -24,6 +24,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::middleware(['apoteker'])->group(function () {
+        Route::get('/admin/test', [ProductController::class, 'test'])->name('product.test');
+        Route::get('/admin/data', [ProductController::class, 'data'])->name('test.data');
+        Route::post('/admin/store', [ProductController::class, 'store'])->name('test.store');
+        Route::post('/admin/update/{id}', [ProductController::class, 'update'])->name('test.update');
     });
 
     Route::middleware(['doktor'])->group(function () {
