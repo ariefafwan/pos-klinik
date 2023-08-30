@@ -36,14 +36,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'doktor',
             'email' => 'doktor@gmail.com',
             'password' => Hash::make('password'),
-            'role_id' => 1
+            'role_id' => 2
         ]);
 
         User::Create([
             'name' => 'services',
             'email' => 'services@gmail.com',
             'password' => Hash::make('password'),
-            'role_id' => 1
+            'role_id' => 3
         ]);
     }
 }
