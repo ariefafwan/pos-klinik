@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Categori extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $fillable = ['name'];
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -18,13 +18,19 @@
         <i class="bi bi-buildings"></i>
         <span>Setting Toko</span>
       </a>
+    </li> --}}
+    <li class="nav-item">
+      <a class="@if (Route::is('categoriproduct.index')) nav-link @else nav-link collapsed @endif" href="{{ route('categoriproduct.index') }}">
+        <i class="bi bi-cassette"></i>
+        <span>Kategori Product</span>
+      </a>
     </li>
     <li class="nav-item">
       <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
         <i class="bi bi-cassette"></i>
         <span>Daftar Product</span>
       </a>
-    </li> --}}
+    </li>
     {{-- <li class="nav-item">
       <a class="@if (Route::is('data.index')) nav-link @else nav-link collapsed @endif" href="{{ route('data.index') }}">
         <i class="bi bi-briefcase"></i>
