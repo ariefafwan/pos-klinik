@@ -11,6 +11,8 @@ class Product extends Model
     protected $guarded = [];
     protected $fillable = ['name', 'harga_beli', 'harga_jual', 'type', 'stock'];
 
+    protected $with = ['categori'];
+
     static function detail_produk($id)
     {
         $data = Product::where('id', $id)->first();
@@ -50,5 +52,10 @@ class Product extends Model
         return $indexing[0] . ' ' . $bulan[(int)$indexing[1]] . ' ' . $indexing[2];
         // return $indexing[2];
         // return $newDateFormat2;
+    }
+
+    public function categori()
+    {
+        return $this->belongsTo(Categori::class);
     }
 }
