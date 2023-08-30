@@ -26,11 +26,11 @@ class HomeController extends Controller
     {
         $role = Auth::user()->role_id;
         if ($role == 1) {
-            return redirect()->to('admin/dashboard');
+            return redirect()->to('apoteker/dashboard');
         } else if ($role == 2) {
-            return redirect()->to('user/dashboard');
+            return redirect()->to('doktor/dashboard');
         } else if ($role == 3) {
-            return redirect()->to('user/dashboard');
+            return redirect()->to('services/dashboard');
         } else {
             return redirect()->to('logout');
         }

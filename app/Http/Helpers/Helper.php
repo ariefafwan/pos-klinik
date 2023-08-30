@@ -11,7 +11,7 @@ function terbilang($uang)
     $huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
     $terbilang = "";
     if ($uang < 12) {
-        $terbilang = " " . $huruf[$uang];
+        $terbilang = "" . $huruf[$uang];
     } else if ($uang < 20) {
         $terbilang = terbilang($uang - 10) . " Belas";
     } else if ($uang < 100) {
