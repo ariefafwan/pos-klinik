@@ -96,8 +96,9 @@ class CategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Categori::findOrFail($id);
-        $product->delete();
+        $categori = Categori::findOrFail($id);
+        $categori->delete();
         Alert::success('Informasi Pesan', 'Berhasil Menghapus Product');
+        return back();
     }
 }

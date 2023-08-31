@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Categori;
 use App\Models\Product;
 use RealRashid\SweetAlert\Facades\Alert;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class ApotekerController extends Controller
 {
@@ -105,5 +105,6 @@ class ApotekerController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         Alert::success('Informasi Pesan', 'Berhasil Menghapus Product');
+        return back();
     }
 }
