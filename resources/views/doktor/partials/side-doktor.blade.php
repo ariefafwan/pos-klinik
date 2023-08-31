@@ -13,18 +13,18 @@
 
     <li class="nav-heading">Menu</li>
 
-    {{-- <li class="nav-item">
-      <a class="@if (Route::is('setting.index')) nav-link @else nav-link collapsed @endif" href="{{ route('setting.index') }}">
+    <li class="nav-item">
+      <a class="@if (Route::is('jadwal.today')) nav-link @else nav-link collapsed @endif" href="{{ route('jadwal.today') }}">
         <i class="bi bi-buildings"></i>
-        <span>Setting Toko</span>
+        <span>Jadwal Hari Ini</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
+      <a class="@if (Route::is('jadwal.all')) nav-link @else nav-link collapsed @endif" href="{{ route('jadwal.all') }}">
         <i class="bi bi-cassette"></i>
-        <span>Daftar Product</span>
+        <span>Seluruh Jadwal</span>
       </a>
-    </li> --}}
+    </li>
     {{-- <li class="nav-item">
       <a class="@if (Route::is('data.index')) nav-link @else nav-link collapsed @endif" href="{{ route('data.index') }}">
         <i class="bi bi-briefcase"></i>

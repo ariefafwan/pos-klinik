@@ -49,6 +49,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::middleware(['doktor'])->group(function () {
         Route::get('/doktor/dashboard', [DoktorController::class, 'dashboard'])->name('doktor.index');
+        Route::get('/doktor/jadwal/today', [DoktorController::class, 'jadwaltoday'])->name('jadwal.today');
+        Route::get('/doktor/jadwal/today/data', [DoktorController::class, 'datatoday'])->name('data.today');
+        Route::get('/doktor/jadwal/all', [DoktorController::class, 'jadwalall'])->name('jadwal.all');
+        Route::get('/doktor/jadwal/all/data', [DoktorController::class, 'dataall'])->name('data.all');
+
+        //create diagnosa
+        Route::get('/doktor/diagnosa/create/{id}', [DoktorController::class, 'diagnosauser'])->name('diagnosa.create');
+        Route::get('/doktor/diagnosa/berlangsung/{id}', [DoktorController::class, 'berlangsung'])->name('diagnosa.berlangsung');
+        Route::post('/dokter/daignosa/store', [DoktorController::class, 'storediagnosa'])->name('diagnosa.store');
     });
 
     Route::middleware(['services'])->group(function () {
