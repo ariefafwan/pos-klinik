@@ -58,4 +58,10 @@ class Product extends Model
     {
         return $this->belongsTo(Categori::class);
     }
+
+    public function getHargaRupiahAttribute()
+    {
+        $harga = $this->harga_jual;
+        return uang($harga);
+    }
 }

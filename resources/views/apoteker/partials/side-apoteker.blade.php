@@ -31,12 +31,12 @@
         <span>Daftar Product</span>
       </a>
     </li>
-    {{-- <li class="nav-item">
-      <a class="@if (Route::is('data.index')) nav-link @else nav-link collapsed @endif" href="{{ route('data.index') }}">
+    <li class="nav-item">
+      <a class="@if (Route::is('transaksi.index')) nav-link @else nav-link collapsed @endif" href="{{ route('transaksi.index') }}">
         <i class="bi bi-briefcase"></i>
-        <span>Data Kasus</span>
+        <span>Transaksi Pembelian</span>
       </a>
-    </li> --}}
+    </li>
     <!-- End Profile Page Nav -->
 
   </ul>
