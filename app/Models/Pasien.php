@@ -35,6 +35,11 @@ class Pasien extends Model
         return $this->hasMany(Appointment::class);
     }
 
+    public function status()
+    {
+        return $this->hasOne(Appointment::class)->where('appointments.status', 'Berjalan');
+    }
+
     public function diagnosa()
     {
         return $this->hasMany(Diagnosa::class);

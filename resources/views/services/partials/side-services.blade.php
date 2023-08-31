@@ -19,6 +19,12 @@
         <span>Daftar Pasien</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="@if (Route::is('appointment.index')) nav-link @else nav-link collapsed @endif" href="{{ route('appointment.index') }}">
+        <i class="bi bi-buildings"></i>
+        <span>Appointment</span>
+      </a>
+    </li>
     {{-- <li class="nav-item">
       <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
         <i class="bi bi-cassette"></i>
