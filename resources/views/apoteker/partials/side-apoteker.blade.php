@@ -20,15 +20,15 @@
       </a>
     </li> --}}
     <li class="nav-item">
-      <a class="@if (Route::is('categoriproduct.index')) nav-link @else nav-link collapsed @endif" href="{{ route('categoriproduct.index') }}">
-        <i class="bi bi-cassette"></i>
-        <span>Kategori Product</span>
-      </a>
-    </li>
-    <li class="nav-item">
       <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
         <i class="bi bi-cassette"></i>
         <span>Daftar Product</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="@if (Route::is('categoriproduct.index')) nav-link @else nav-link collapsed @endif" href="{{ route('categoriproduct.index') }}">
+        <i class="bi bi-cassette"></i>
+        <span>Kategori Product</span>
       </a>
     </li>
     {{-- <li class="nav-item">

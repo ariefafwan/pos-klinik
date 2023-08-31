@@ -1,5 +1,4 @@
-@extends('apoteker.partials.app')
-
+@extends('services.partials.app')
 @section('body')
 
 @if($errors->any())
@@ -21,27 +20,33 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <button onclick="addForm('{{ route('categoriproduct.store') }}')"
-                                class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah</button>
+                            <button onclick="addForm('{{ route('pasien.store') }}')"
+                                class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Pasien</button>
                         </div>
                     </div>
                     <hr>
-                    @include('apoteker.categori.create')
+                    @include('services.pasien.create')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-body table-responsive">
                                 <table class="table table-stiped table-bordered">
                                     <thead>
                                         <th width="5%">No</th>
-                                        <th>Nama Kategori Produk</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>NIK</th>
+                                        <th>No HP</th>
+                                        <th>Alamat</th>
+                                        <th>Umur</th>
+                                        <th>L/P</th>
+                                        {{-- <th>Pekerjaan</th> --}}
                                         <th>Aksi</th>
                                     </thead>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    @include('apoteker.categori.edit')
-                    <form id="categori-delete"
+                    @include('services.pasien.edit')
+                    <form id="data-delete"
                         action="" method="POST"
                         style="display: none;">
                         @csrf
@@ -57,21 +62,12 @@
     <script>
         let table;
 
-        function filterData() {
-            $('.table').DataTable().search(
-                $('.tipe').val()
-            ).draw();
-        }
-        $('.tipe').on('change', function () {
-            filterData();
-        });
-
         $(function () {
             table = $('.table').DataTable({
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('categoriproduct.create') }}',
+                    url: '{{ route('pasien.create') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -79,8 +75,26 @@
                         sortable: false
                     },
                     {
-                        data: 'name'
+                        data: 'nama_lengkap'
                     },
+                    {
+                        data: 'nik'
+                    },
+                    {
+                        data: 'no_hp'
+                    },
+                    {
+                        data: 'alamat'
+                    },
+                    {
+                        data: 'umur'
+                    },
+                    {
+                        data: 'gender'
+                    },
+                    // {
+                    //     data: 'pekerjaan'
+                    // },
                     {
                         data: 'aksi',
                         searchable: false,
@@ -92,42 +106,41 @@
 
         function addForm(url) {
             $('#modal-create').modal('show');
-            $('#modal-create .modal-title').text('Tambah Kategori Product');
+            $('#modal-create .modal-title').text('Tambah Data Pasien');
 
             $('#modal-create form')[0].reset();
             $('#modal-create form').attr('action', url);
             $('#modal-create [name=_method]').val('post');
-            $('#modal-create #nama_kategori').focus();
         }
 
         function editForm(url, id) {
-            console.log(id)
             $('#modal-edit').modal('show');
-            $('#modal-edit .modal-title').text('Edit Kategori');
+            $('#modal-edit .modal-title').text('Edit Data Pasien');
             $('#modal-edit form')[0].reset();
             $('#modal-edit form').attr('action', url);
-            $('#modal-edit #editnama_kategori').focus();
             let editid = id
             $.ajax({
-                url: '/apoteker/categoriproduct/'+editid,
+                url: '/services/pasien/'+editid,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data)
                 {
                     $('#editid').val(data.id);
-                    $('#editnama_kategori').val(data.name);
+                    $('#editnama_lengkap').val(data.nama_lengkap);
+                    $('#editnik').val(data.nik);
+                    $('#editno_hp').val(data.no_hp);
+                    $('#editalamat').val(data.alamat);
+                    $('#editjenis_kelamin').val(data.jenis_kelamin);
+                    $('#editpekerjaan').val(data.pekerjaan);
+                    $('#edittanggal_lahir').val(data.tanggal_lahir);
                 }
             })
         }
 
         function deleteData(url) {
-            // $.post(url, {
-            //             '_token': $('[name=csrf-token]').attr('content'),
-            //             '_method': 'delete'
-            //         });
-            $('#categori-delete').attr('action', url)
+            $('#data-delete').attr('action', url)
             event.preventDefault();
-            $('#categori-delete').submit();
+            $('#data-delete').submit();
         }
     </script>
 @endpush

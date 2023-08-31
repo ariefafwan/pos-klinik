@@ -57,6 +57,12 @@
                         </div>
                     </div>
                     @include('apoteker.product.edit')
+                    <form id="data-delete"
+                        action="" method="POST"
+                        style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,19 +155,9 @@
         }
 
         function deleteData(url) {
-            if (confirm('Yakin ingin menghapus data terpilih?')) {
-                $.post(url, {
-                        '_token': $('[name=csrf-token]').attr('content'),
-                        '_method': 'delete'
-                    })
-                    .done((response) => {
-                        table.ajax.reload();
-                    })
-                    .fail((errors) => {
-                        alert('Tidak dapat menghapus data');                        
-                        return;
-                    });
-            }
+            $('#data-delete').attr('action', url)
+            event.preventDefault();
+            $('#data-delete').submit();
         }
     </script>
 @endpush

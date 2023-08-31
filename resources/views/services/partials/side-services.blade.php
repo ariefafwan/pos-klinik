@@ -13,13 +13,13 @@
 
     <li class="nav-heading">Menu</li>
 
-    {{-- <li class="nav-item">
-      <a class="@if (Route::is('setting.index')) nav-link @else nav-link collapsed @endif" href="{{ route('setting.index') }}">
+    <li class="nav-item">
+      <a class="@if (Route::is('pasien.index')) nav-link @else nav-link collapsed @endif" href="{{ route('pasien.index') }}">
         <i class="bi bi-buildings"></i>
-        <span>Setting Toko</span>
+        <span>Daftar Pasien</span>
       </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
         <i class="bi bi-cassette"></i>
         <span>Daftar Product</span>

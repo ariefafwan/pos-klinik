@@ -4,6 +4,7 @@ use App\Http\Controllers\Apoteker\ApotekerController;
 use App\Http\Controllers\Apoteker\CategoriController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doktor\DoktorController;
+use App\Http\Controllers\Services\PasienController;
 use App\Http\Controllers\Services\ServicesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::middleware(['services'])->group(function () {
         Route::get('/services/dashboard', [ServicesController::class, 'dashboard'])->name('services.index');
+        Route::resource('/services/pasien', PasienController::class);
     });
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
