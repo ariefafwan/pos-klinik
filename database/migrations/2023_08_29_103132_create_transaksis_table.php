@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('invoice');
-            $table->string('type');
-            $table->string('status');
+            $table->date('tanggal');
+            // $table->string('status');
             $table->bigInteger('total_item');
             $table->bigInteger('total_harga');
             $table->bigInteger('pemasukan');

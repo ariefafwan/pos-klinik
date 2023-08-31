@@ -28,9 +28,9 @@
                     @include('apoteker.product.create')
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <div class="form-group">
-                                    <label>Pilih Tipe Produk</label>
+                                    <label>Filter Kategori Produk</label>
                                     <select class="form-select tipe" name="">
                                         @foreach($type as $index)
                                             <option value="{{ $index->categori->name }}">{{ $index->categori->name }}</option>
@@ -101,10 +101,10 @@
                         data: 'kategori'
                     },
                     {
-                        data: 'harga_beli'
+                        data: 'hargabeli'
                     },
                     {
-                        data: 'harga_jual'
+                        data: 'hargajual'
                     },
                     {
                         data: 'stock'

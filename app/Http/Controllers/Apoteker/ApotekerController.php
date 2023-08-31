@@ -37,6 +37,12 @@ class ApotekerController extends Controller
             ->editColumn('kategori', function ($produk) {
                 return $produk->categori->name;
             })
+            ->editColumn('hargabeli', function ($produk) {
+                return uang($produk->harga_beli);
+            })
+            ->editColumn('hargajual', function ($produk) {
+                return uang($produk->harga_jual);
+            })
             ->addColumn('aksi', function ($produk) {
                 return '
                 <div class="d-flex justify-content-evenly">

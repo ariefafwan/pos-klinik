@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Apoteker\ApotekerController;
 use App\Http\Controllers\Apoteker\CategoriController;
+use App\Http\Controllers\Apoteker\TransaksiController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doktor\DoktorController;
 use App\Http\Controllers\Services\AppointmentController;
@@ -45,6 +46,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         //categori Product
         Route::resource('/apoteker/categoriproduct', CategoriController::class);
+
+        //transaksi pembelian
+        Route::get('/apoteker/transaksi-pembelian', [TransaksiController::class, 'index'])->name('transaksi.index');
+        Route::get('/apoteker/transaksipembelian/create', [TransaksiController::class, 'create'])->name('transaksi.create');
     });
 
     Route::middleware(['doktor'])->group(function () {
