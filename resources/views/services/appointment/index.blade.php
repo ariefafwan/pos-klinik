@@ -31,7 +31,7 @@
                             <div class="col-md-12 mb-3">
                                 <h4 class="text-center">AppointMent Today</h4>
                                 <div class="box-body table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover table-bordered">
                                         <thead>
                                             <th>No Tiket</th>
                                             <th>Jam</th>
@@ -60,18 +60,20 @@
                                     </table>
                                 </div>
                             </div>
-                            <h4 class="text-center">Semua AppointMent Berjalan</h4>
-                            <div class="box-body table-responsive">
-                                <table id="table" class="table table-stiped table-bordered">
-                                    <thead>
-                                        <th>No Tiket</th>
-                                        <th>Jam</th>
-                                        <th>Pasien</th>
-                                        <th>Doktor</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </thead>
-                                </table>
+                            <div class="col-md-12">
+                                <h4 class="text-center">Semua AppointMent Berjalan</h4>
+                                <div class="box-body table-responsive">
+                                    <table id="table" class="table table-stiped table-bordered">
+                                        <thead>
+                                            <th>No Tiket</th>
+                                            <th>Jam</th>
+                                            <th>Pasien</th>
+                                            <th>Doktor</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
