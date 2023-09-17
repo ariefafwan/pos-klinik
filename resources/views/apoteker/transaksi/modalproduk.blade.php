@@ -14,6 +14,7 @@
                                     <th>Nama Produk</th>
                                     <th>Kategori</th>
                                     <th>Harga Jual</th>
+                                    <th width="15%">Jumlah</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -21,8 +22,10 @@
                                     <td>{{ $p->name }}</td>
                                     <td>{{ $p->categori->name }}</td>
                                     <td>{{ $p->HargaRupiah }}</td>
+                                    {{-- <td><div id="#jumlahqty{{ $p->id }}">Tes</div></td> --}}
+                                    <td><input id="jumlahqty{{ $p->id }}" name="qty" type="number" class="form-control input-sm quantity"></td>
                                     <td align="center" class="d-flex justify-content-evenly">
-                                        <button class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
+                                        <button onclick="pilihProduk({{ $p->id }})" class="btn btn-xs btn-info btn-flat"><i class="bi bi-plus-circle"></i></button>
                                     </td>
                                     @endforeach
                                 </tbody>
@@ -30,10 +33,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i>&nbspClose</button>
-                <button class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>&nbspSubmit</button>
             </div>
         </div>
     </div>

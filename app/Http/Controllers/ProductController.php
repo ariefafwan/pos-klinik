@@ -32,7 +32,7 @@ class ProductController extends Controller
     {
         $produk = Product::all();
 
-        return DataTables::of($produk)
+        $item =  DataTables::of($produk)
             ->addIndexColumn()
             ->editColumn('diperbarui', function ($produk) {
                 return $produk->ProductDate;
@@ -47,6 +47,8 @@ class ProductController extends Controller
             })
             ->rawColumns(['aksi'])
             ->make(true);
+
+        dd($item);
     }
 
     public function store(Request $request)

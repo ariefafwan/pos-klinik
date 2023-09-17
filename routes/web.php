@@ -3,6 +3,7 @@
 use App\Http\Controllers\Apoteker\ApotekerController;
 use App\Http\Controllers\Apoteker\CategoriController;
 use App\Http\Controllers\Apoteker\TransaksiController;
+use App\Http\Controllers\Apoteker\TransaksiItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doktor\DoktorController;
 use App\Http\Controllers\Services\AppointmentController;
@@ -49,7 +50,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         //transaksi pembelian
         Route::get('/apoteker/transaksi-pembelian', [TransaksiController::class, 'index'])->name('transaksi.index');
-        Route::get('/apoteker/transaksipembelian/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+        Route::post('/apoteker/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+        Route::post('/apoteker/transaksi/update', [TransaksiController::class, 'update'])->name('transaksi.update');
+        // Route::get('/apoteker/')
+        Route::get('/apoteker/transaksi/data', [TransaksiController::class, 'data'])->name('transaksi.data');
+        Route::get('/apoteker/transaksipembelian/create/{id}', [TransaksiController::class, 'create'])->name('transaksi.create');
+        Route::post('/apoteker/transaksiitem/store', [TransaksiItemController::class, 'store'])->name('transaksiitem.store');
+        Route::get('/apoteker/transaksiitem/data/{id}', [TransaksiItemController::class, 'data'])->name('transaksiitem.data');
+        Route::delete('/apoteker/transaksiitem/delete/{id}', [TransaksiItemController::class, 'destroy'])->name('transaksiitem.destroy');
+        Route::get('/apoteker/transaksi/loadform/{id}', [TransaksiItemController::class, 'loadForm'])->name('transaksi.loadform');
     });
 
     Route::middleware(['doktor'])->group(function () {
