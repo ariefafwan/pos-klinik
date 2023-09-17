@@ -22,22 +22,22 @@ class Transaksi extends Model
         return $this->hasMany(TransaksiItem::class);
     }
 
-    static function tambah_transaksi()
-    {
-        $idgen = time() . rand(100, 999);
-        $data = Transaksi::create([
-            'status' => "Selesai",
-            'timestamp' => date('Y-m-d'),
-            'invoice' => $idgen,
-        ]);
+    // static function tambah_transaksi()
+    // {
+    //     $idgen = time() . rand(100, 999);
+    //     $data = Transaksi::create([
+    //         'status' => "Selesai",
+    //         'timestamp' => date('Y-m-d'),
+    //         'invoice' => $idgen,
+    //     ]);
 
-        return $data->id;
-    }
+    //     return $data->id;
+    // }
 
-    static function update_transaksi($transaksi_id, $harga)
-    {
-        Transaksi::find($transaksi_id)->update([
-            'total' => $harga,
-        ]);
-    }
+    // static function update_transaksi($transaksi_id, $harga)
+    // {
+    //     Transaksi::find($transaksi_id)->update([
+    //         'total' => $harga,
+    //     ]);
+    // }
 }

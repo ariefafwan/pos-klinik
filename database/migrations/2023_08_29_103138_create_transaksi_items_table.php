@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('qty');
             $table->bigInteger('harga');
+            $table->bigInteger('pemasukan');
             $table->bigInteger('subtotal');
             $table->timestamps();
         });

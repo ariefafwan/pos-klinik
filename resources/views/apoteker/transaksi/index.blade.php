@@ -20,7 +20,12 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <a href="{{ route('transaksi.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Transaksi</a>
+                            <form action="{{ route('transaksi.store') }}" method="POST">
+                                @csrf
+                                @method('post')
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Transaksi</button>
+                            </form>
+                            {{-- <a href="" class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Transaksi</a> --}}
                             {{-- <button onclick="addForm('{{ route('product.store') }}')"
                                 class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah</button> --}}
                         </div>
@@ -46,7 +51,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- @include('apoteker.product.edit') --}}
                     <form id="data-delete"
                         action="" method="POST"
                         style="display: none;">
@@ -68,7 +72,7 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('product.data') }}',
+                    url: '{{ route('transaksi.data') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -76,19 +80,19 @@
                         sortable: false
                     },
                     {
-                        data: 'name'
+                        data: 'invoice'
                     },
                     {
-                        data: 'kategori'
+                        data: 'tanggal'
                     },
                     {
-                        data: 'hargabeli'
+                        data: 'total_item'
                     },
                     {
-                        data: 'hargajual'
+                        data: 'total_harga'
                     },
                     {
-                        data: 'stock'
+                        data: 'pemasukan'
                     },
                     {
                         data: 'aksi',
@@ -99,43 +103,8 @@
             });
         });
 
-        // function addForm(url) {
-        //     $('#modal-create').modal('show');
-        //     $('#modal-create .modal-title').text('Tambah Product');
-
-        //     $('#modal-create form')[0].reset();
-        //     $('#modal-create form').attr('action', url);
-        //     $('#modal-create [name=_method]').val('post');
-        //     $('#modal-create #nama_produk').focus();
-        // }
-
-        // function editForm(url, id) {
-        //     $('#modal-edit').modal('show');
-        //     $('#modal-edit .modal-title').text('Edit Kategori');
-        //     $('#modal-edit form')[0].reset();
-        //     $('#modal-edit form').attr('action', url);
-        //     $('#modal-edit #nama_produk').focus();
-        //     let editid = id
-        //     $.ajax({
-        //         url: '/apoteker/product/edit/'+editid,
-        //         type: "GET",
-        //         dataType: "JSON",
-        //         success: function(data)
-        //         {
-        //             $('#editid').val(data.id);
-        //             $('#editnama_produk').val(data.name);
-        //             $('#editcategori_id').val(data.categori_id);
-        //             $('#editharga_beli').val(data.harga_beli);
-        //             $('#editharga_jual').val(data.harga_jual);
-        //             $('#editstock').val(data.stock);
-        //         }
-        //     })
-        // }
-
-        // function deleteData(url) {
-        //     $('#data-delete').attr('action', url)
-        //     event.preventDefault();
-        //     $('#data-delete').submit();
-        // }
+        function addForm(url) {
+            location.href = url;
+        }
     </script>
 @endpush
