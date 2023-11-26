@@ -18,13 +18,15 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($produk as $p)
-                                    <td>{{ $p->name }}</td>
-                                    <td>{{ $p->HargaRupiah }}</td>
-                                    {{-- <td><div id="#jumlahqty{{ $p->id }}">Tes</div></td> --}}
-                                    <td><input id="jumlahqty{{ $p->id }}" name="qty" type="number" class="form-control input-sm quantity"></td>
-                                    <td align="center" class="d-flex justify-content-evenly">
-                                        <button onclick="pilihProduk({{ $p->id }})" class="btn btn-xs btn-info btn-flat"><i class="bi bi-plus-circle"></i></button>
-                                    </td>
+                                    <tr>
+                                        <td>{{ $p->name }}</td>
+                                        <td>{{ $p->HargaRupiah }}</td>
+                                        {{-- <td><div id="#jumlahqty{{ $p->id }}">Tes</div></td> --}}
+                                        <td><input id="jumlahqty{{ $p->id }}" name="qty" type="number" class="form-control input-sm quantity"></td>
+                                        <td align="center" class="d-flex justify-content-evenly">
+                                            <button onclick="pilihProduk({{ $p->id }})" class="btn btn-xs btn-info btn-flat"><i class="bi bi-plus-circle"></i></button>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
