@@ -9,16 +9,16 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $fillable = ['name', 'harga_beli', 'harga_jual', 'type', 'stock'];
+    protected $fillable = ['name', 'harga_beli', 'harga_jual', 'type', 'stock', 'biaya', 'kategori'];
 
-    protected $with = ['categori'];
+    // protected $with = ['categori'];
 
-    static function detail_produk($id)
-    {
-        $data = Product::where('id', $id)->first();
+    // static function detail_produk($id)
+    // {
+    //     $data = Product::where('id', $id)->first();
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
     public function transaksiitem()
     {
@@ -54,14 +54,15 @@ class Product extends Model
         // return $newDateFormat2;
     }
 
-    public function categori()
-    {
-        return $this->belongsTo(Categori::class);
-    }
-
     public function getHargaRupiahAttribute()
     {
         $harga = $this->harga_jual;
         return uang($harga);
+    }
+
+    public function getBiayaRupiahAttribute()
+    {
+        $biaya = $this->biaya;
+        return uang($biaya);
     }
 }

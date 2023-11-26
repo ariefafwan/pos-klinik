@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         $product = Product::paginate(10);
         $toko = ProfileWeb::all();
-        $page = "Daftar Produk";
+        $page = "Daftar Jasa";
         $type = Product::select('type')->distinct()->get();
         return view('admin.product.index', compact('page', 'product', 'toko', 'type'));
     }
@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         // $product = Product::paginate(10);
         $toko = ProfileWeb::all();
-        $page = "Daftar Produk";
+        $page = "Daftar Jasa";
         $type = Product::select('type')->distinct()->get();
         return view('admin.product.test', compact('page', 'toko', 'type'));
     }

@@ -28,6 +28,7 @@
                                             <th>No Tiket</th>
                                             <th>Tanggal / Jam</th>
                                             <th>Pasien</th>
+                                            <th>Status</th>
                                             <th>Keluhan</th>
                                         </thead>
                                     </table>
@@ -62,6 +63,9 @@
                     },
                     {
                         data: 'pasien.nama_lengkap'
+                    },
+                    {
+                        data: 'status'
                     },
                     {
                         data: 'keluhan'

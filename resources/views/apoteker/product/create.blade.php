@@ -20,20 +20,6 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="categori_id" class="form-label fw-bold">Tipe Produk</label>
-                        <div class="input-group has-validation">
-                            <select class="form-select" id="categori_id" name="categori_id" aria-label="Default select example">
-                                <option selected>Pilih Kategori Produk</option>
-                                @foreach ($categori as $kat)
-                                    <option value="{{ $kat->id }}">{{ $kat->name }}</option>
-                                @endforeach
-                            </select>
-                            <div class="invalid-feedback">
-                                Invalid Select Tipe Produk
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
                         <label for="harga_jual" class="form-label fw-bold">Harga Jual</label>
                         <div class="input-group has-validation">
                             <input type="number" class="form-control" id="harga_jual" name="harga_jual"

@@ -20,17 +20,29 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="@if (Route::is('jasa.index')) nav-link @else nav-link collapsed @endif" href="{{ route('jasa.index') }}">
+        <i class="bi bi-buildings"></i>
+        <span>Daftar Jasa</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="@if (Route::is('appointment.index')) nav-link @else nav-link collapsed @endif" href="{{ route('appointment.index') }}">
         <i class="bi bi-buildings"></i>
         <span>Appointment</span>
       </a>
     </li>
-    {{-- <li class="nav-item">
-      <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
+    <li class="nav-item">
+      <a class="@if (Route::is('services.appointment_all')) nav-link @else nav-link collapsed @endif" href="{{ route('services.appointment_all') }}">
         <i class="bi bi-cassette"></i>
-        <span>Daftar Product</span>
+        <span>Semua Appointment</span>
       </a>
-    </li> --}}
+    </li>
+    <li class="nav-item">
+      <a class="@if (Route::is('services-transaksi.index')) nav-link @else nav-link collapsed @endif" href="{{ route('services-transaksi.index') }}">
+        <i class="bi bi-briefcase"></i>
+        <span>Berobat Selesai</span>
+      </a>
+    </li>
     {{-- <li class="nav-item">
       <a class="@if (Route::is('data.index')) nav-link @else nav-link collapsed @endif" href="{{ route('data.index') }}">
         <i class="bi bi-briefcase"></i>

@@ -20,22 +20,18 @@ class ApotekerController extends Controller
     public function product()
     {
         $page = "Daftar Produk";
-        $type = Product::select('categori_id')->distinct()->get();
-        $categori = Categori::all();
-        return view('apoteker.product.index', compact('page', 'type', 'categori'));
+        // $type = Product::select('kategori')->distinct()->get();
+        return view('apoteker.product.index', compact('page'));
     }
 
     public function data()
     {
-        $produk = Product::all();
+        $produk = Product::where('kategori', 'barang')->get();
 
         return DataTables::of($produk)
             ->addIndexColumn()
             ->editColumn('diperbarui', function ($produk) {
                 return $produk->ProductDate;
-            })
-            ->editColumn('kategori', function ($produk) {
-                return $produk->categori->name;
             })
             ->editColumn('hargabeli', function ($produk) {
                 return uang($produk->harga_beli);
@@ -61,7 +57,7 @@ class ApotekerController extends Controller
             'name' => 'required',
             'harga_beli' => 'required|numeric|gt:0',
             'harga_jual' => 'required|numeric|gt:0',
-            'categori_id' => 'required|numeric',
+            // 'ka' => 'required|numeric',
             'stock' => 'required|numeric|digits_between:0,3',
         ]);
 
@@ -69,7 +65,7 @@ class ApotekerController extends Controller
         $produk->name = $request->name;
         $produk->harga_beli = $request->harga_beli;
         $produk->harga_jual = $request->harga_jual;
-        $produk->categori_id = $request->categori_id;
+        $produk->kategori = 'Barang';
         $produk->stock = $request->stock;
         $produk->save();
 
@@ -90,7 +86,7 @@ class ApotekerController extends Controller
             'name' => 'required',
             'harga_beli' => 'required|numeric|gt:0',
             'harga_jual' => 'required|numeric|gt:0',
-            'categori_id' => 'required|numeric',
+            // 'categori_id' => 'required|numeric',
             'stock' => 'required|numeric|digits_between:0,3',
         ]);
 
@@ -98,7 +94,7 @@ class ApotekerController extends Controller
         $produk->name = $request->name;
         $produk->harga_beli = $request->harga_beli;
         $produk->harga_jual = $request->harga_jual;
-        $produk->categori_id = $request->categori_id;
+        // $produk->categori_id = $request->categori_id;
         $produk->stock = $request->stock;
         $produk->save();
 

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Apoteker;
+namespace App\Http\Controllers\Services;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\TransaksiItem;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use League\Fractal\Resource\Item;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class TransaksiItemController extends Controller
+class TransaksiItemServicesController extends Controller
 {
     public function store(Request $request)
     {
@@ -38,28 +37,53 @@ class TransaksiItemController extends Controller
 
     public function data($id)
     {
-        // $idtransaksi = session('id_transaksi');
-        $detail = TransaksiItem::with('product')
+        $type = 'Barang';
+        $detail = TransaksiItem::whereHas('product', function ($q) use ($type) {
+            $q->where('kategori', $type);
+        })->with('product')
             ->where('transaksi_id', $id)
             ->get();
         $data = array();
 
         foreach ($detail as $item) {
             $row = array();
-            // $row['kode_produk'] = '<span class="label label-success">' . $item->produk['kode_produk'] . '</span';
             $row['nama_produk'] = $item->name;
             $row['harga']  = uang($item->harga);
             $row['jumlah']      = $item->qty;
             $row['subtotal']    = uang($item->subtotal);
             $row['aksi']        = '<div class="btn-group">
-                                    <button onclick="deleteData(`' . route('transaksiitem.destroy', $item->id) . '`)" class="btn btn-xs btn-danger btn-flat"><i class="bi bi-trash"></i></button>
+                                    <button onclick="deleteData(`' . route('services-transaksiitem.destroy', $item->id) . '`)" class="btn btn-xs btn-danger btn-flat"><i class="bi bi-trash"></i></button>
                                    </div>';
             $data[] = $row;
         }
 
         return DataTables::of($data)
             ->addIndexColumn()
-            ->rawColumns(['aksi', 'kode_produk', 'jumlah'])
+            ->rawColumns(['aksi', 'jumlah'])
+            ->make(true);
+    }
+
+    public function datajasa($id)
+    {
+        $type = 'Jasa';
+        $detail = TransaksiItem::whereHas('product', function ($q) use ($type) {
+            $q->where('kategori', $type);
+        })->with('product')
+            ->where('transaksi_id', $id)
+            ->get();
+        // dd($detail);
+        $data = array();
+
+        foreach ($detail as $item) {
+            $row = array();
+            $row['nama_jasa'] = $item->name;
+            $row['subtotal']    = uang($item->subtotal);
+            $data[] = $row;
+        }
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->rawColumns(['aksi', 'jumlah'])
             ->make(true);
     }
 

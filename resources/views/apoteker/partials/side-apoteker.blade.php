@@ -19,12 +19,12 @@
         <span>Setting Toko</span>
       </a>
     </li> --}}
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="@if (Route::is('categoriproduct.index')) nav-link @else nav-link collapsed @endif" href="{{ route('categoriproduct.index') }}">
         <i class="bi bi-cassette"></i>
-        <span>Kategori Product</span>
+        <span>Daftar Jasa</span>
       </a>
-    </li>
+    </li> --}}
     <li class="nav-item">
       <a class="@if (Route::is('product.index')) nav-link @else nav-link collapsed @endif" href="{{ route('product.index') }}">
         <i class="bi bi-cassette"></i>

@@ -29,7 +29,7 @@
                                             <th>Jam</th>
                                             <th>Pasien</th>
                                             <th>Keluhan</th>
-                                            <th>Aksi</th>
+                                            <th>Mulai Diagnosa</th>
                                         </thead>
                                     </table>
                                 </div>
@@ -41,6 +41,25 @@
         </div>
     </div>
 </div>
+<section>
+    <div class="modal fade" id="showmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Daftar Diagnosa Pasien</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="keluhan" class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i>&nbspClose</button>
+                <button class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>&nbspSubmit</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
 @push('scripts')
     <script>
@@ -76,47 +95,31 @@
             });
         });
 
-        // function addForm(url) {
-        //     $('#modal-create').modal('show');
-        //     $('#modal-create .modal-title').text('Tambah Data Appointment');
-
-        //     $('#modal-create form')[0].reset();
-        //     $('#modal-create form').attr('action', url);
-        //     $('#modal-create [name=_method]').val('post');
-        // }
-
-        // function editForm(url, id) {
-        //     console.log(url,id);
-        //     $('#modal-edit').modal('show');
-        //     $('#modal-edit .modal-title').text('Edit Data Appointment');
-        //     $('#modal-edit form')[0].reset();
-        //     $('#modal-edit form').attr('action', url);
-        //     let editid = id
-        //     $.ajax({
-        //         url: '/services/appointment/'+editid,
-        //         type: "GET",
-        //         dataType: "JSON",
-        //         success: function(data)
-        //         {
-        //             console.log(data);
-        //             $('#editid').val(data.id);
-        //             $('#editjam').val(data.jam);
-        //             $('#editpasien_id').append('<option value="'+ data.pasien_id +'">'+ data.pasien.nik +' - '+ data.pasien.nama_lengkap +'</option>');
-        //             $('#edituser_id').val(data.user_id);
-        //             $('#editstatus').val(data.status);
-        //             $('#edittanggal').val(data.tanggal);
-        //             $('#editkeluhan').val(data.keluhan);
-        //         }
-        //     })
-        // }
-
-        // function redirect(id) {
-        //     let editid = id;
-            
-        //     let url = '{{ route('diagnosa.create', "<script><?") }}';
-            
-        //     console.log(url)
-        //     // $('#link').click();
-        // }
+        function showUser(id_user) {
+            $.ajax({
+                url: '/doktor/diagnosapasien/'+id_user,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    $('#showmodal').modal('show');
+                    let showKeluhan = `<table class="table table-stiped table-bordered">
+                                            <thead>
+                                                <th style="width: 15%">Tanggal AppointMent</th>
+                                                <th>Keluhan</th>
+                                            </thead>
+                                            <tbody>
+                                                ${data.map((res) => {
+                                                    return `<tr>
+                                                                <td>${res.appointment.tanggal}</td>
+                                                                <td>${res.hasil}</td>
+                                                            </tr>`
+                                                })}
+                                            </tbody>
+                                        </table>`
+                }
+            })
+            $('#keluhan').append(showKeluhan);
+        }
     </script>
 @endpush

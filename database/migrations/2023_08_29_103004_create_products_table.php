@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('categori_id')->unsigned();
-            $table->foreign('categori_id')->references('id')->on('categoris')->onUpdate('cascade')->onDelete('cascade');
-            $table->bigInteger('harga_jual');
-            $table->bigInteger('harga_beli');
-            $table->tinyInteger('stock');
+            $table->enum('kategori', ['Jasa', 'Barang']);
+            $table->bigInteger('harga_jual')->nullable();
+            $table->bigInteger('harga_beli')->nullable();
+            $table->bigInteger('biaya')->nullable();
+            $table->tinyInteger('stock')->nullable();
             $table->timestamps();
         });
     }
