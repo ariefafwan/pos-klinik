@@ -71,7 +71,7 @@ class TransaksiController extends Controller
     {
         // dd(session('id_transaksi'));
         $page = "Tambah Transaksi";
-        $produk = Product::all()->where('kategori', 'barang')->where('stock', '>', 0);
+        $produk = Product::all()->where('kategori', 'Barang')->where('stock', '>', 0);
         $transaksi = Transaksi::find($id);
         $id_transaksi = $transaksi->id;
         return view('apoteker.transaksi.create', compact('page', 'produk', 'id_transaksi'));
