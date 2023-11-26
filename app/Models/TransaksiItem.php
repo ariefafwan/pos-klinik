@@ -9,7 +9,7 @@ class TransaksiItem extends Model
 {
     use HasFactory;
 
-    protected $with = ['transaksi', 'product'];
+    protected $with = ['dataTransaksi', 'product'];
 
     protected $fillable = [
         'transaksi_id',
@@ -30,9 +30,9 @@ class TransaksiItem extends Model
         ]);
     }
 
-    public function transaksi()
+    public function dataTransaksi()
     {
-        return $this->belongsTo(Transaksi::class);
+        return $this->belongsTo(Transaksi::class, 'transaksi_id', 'id');
     }
 
     public function product()

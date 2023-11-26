@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('invoice');
             $table->date('tanggal');
-            // $table->string('status');
+            $table->enum('type', ['Berobat', 'Pembelian']);
+            $table->enum('status', ['Berjalan', 'Selesai'])->nullable();
             $table->bigInteger('total_item');
             $table->bigInteger('total_harga');
             $table->bigInteger('pemasukan');

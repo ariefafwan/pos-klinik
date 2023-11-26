@@ -10,12 +10,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama_kategori" class="form-label fw-bold">Nama Kategori Produk</label>
+                        <label for="name" class="form-label fw-bold">Nama Jasa</label>
                         <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="nama_kategori" name="name"
-                                placeholder="Masukkan Nama Produk..." required autofocus>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Masukkan Nama Jasa..." required autofocus>
                             <div class="invalid-feedback">
-                                Invalid Nama Kategori Produk
+                                Invalid Nama Jasa
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="biaya" class="form-label fw-bold">Biaya Jasa</label>
+                        <div class="input-group has-validation">
+                            <input type="number" min="0" class="form-control" id="biaya" name="biaya"
+                                placeholder="Masukkan Biaya Jasa..." required autofocus>
+                            <div class="invalid-feedback">
+                                Invalid Biaya Jasa
                             </div>
                         </div>
                     </div>

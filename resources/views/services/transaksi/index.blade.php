@@ -1,4 +1,4 @@
-@extends('apoteker.partials.app')
+@extends('services.partials.app')
 @section('body')
 
 @if($errors->any())
@@ -20,7 +20,7 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <form action="{{ route('transaksi.store') }}" method="POST">
+                            <form action="{{ route('services-transaksi.store') }}" method="POST">
                                 @csrf
                                 @method('post')
                                 <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Transaksi</button>
@@ -36,8 +36,6 @@
                                         <thead>
                                             <th width="5%">No</th>
                                             <th>Invoice</th>
-                                            <th>Tanggal</th>
-                                            <th>Total Item</th>
                                             <th>Total Harga</th>
                                             <th>Pemasukan</th>
                                             <th>Aksi</th>
@@ -68,7 +66,7 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('transaksi.data') }}',
+                    url: '{{ route('services-transaksi.data') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -77,12 +75,6 @@
                     },
                     {
                         data: 'invoice'
-                    },
-                    {
-                        data: 'tanggal'
-                    },
-                    {
-                        data: 'total_item'
                     },
                     {
                         data: 'total_harga'
@@ -99,7 +91,7 @@
             });
         });
 
-        function addForm(url) {
+        function pembayaran(url) {
             location.href = url;
         }
     </script>

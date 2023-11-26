@@ -28,7 +28,7 @@
                     @include('apoteker.product.create')
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-3 mb-3">
+                            {{-- <div class="col-md-3 mb-3">
                                 <div class="form-group">
                                     <label>Filter Kategori Produk</label>
                                     <select class="form-select tipe" name="">
@@ -37,14 +37,13 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12">
                                 <div class="box-body table-responsive">
                                     <table class="table table-stiped table-bordered">
                                         <thead>
                                             <th width="5%">No</th>
                                             <th>Nama Produk</th>
-                                            <th>Kategori</th>
                                             <th>Harga Beli</th>
                                             <th>Harga Jual</th>
                                             <th>Stock</th>
@@ -73,14 +72,14 @@
     <script>
         let table;
 
-        function filterData() {
-            $('.table').DataTable().search(
-                $('.tipe').val()
-            ).draw();
-        }
-        $('.tipe').on('change', function () {
-            filterData();
-        });
+        // function filterData() {
+        //     $('.table').DataTable().search(
+        //         $('.tipe').val()
+        //     ).draw();
+        // }
+        // $('.tipe').on('change', function () {
+        //     filterData();
+        // });
 
         $(function () {
             table = $('.table').DataTable({
@@ -96,9 +95,6 @@
                     },
                     {
                         data: 'name'
-                    },
-                    {
-                        data: 'kategori'
                     },
                     {
                         data: 'hargabeli'
@@ -146,7 +142,7 @@
                 {
                     $('#editid').val(data.id);
                     $('#editnama_produk').val(data.name);
-                    $('#editcategori_id').val(data.categori_id);
+                    // $('#editcategori_id').val(data.categori_id);
                     $('#editharga_beli').val(data.harga_beli);
                     $('#editharga_jual').val(data.harga_jual);
                     $('#editstock').val(data.stock);

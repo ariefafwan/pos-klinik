@@ -28,40 +28,8 @@
                     @include('services.appointment.create')
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-12 mb-3">
-                                <h4 class="text-center">AppointMent Today</h4>
-                                <div class="box-body table-responsive">
-                                    <table class="table table-hover table-bordered">
-                                        <thead>
-                                            <th>No Tiket</th>
-                                            <th>Jam</th>
-                                            <th>Pasien</th>
-                                            <th>Doktor</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </thead>
-                                        <tbody>
-                                        @if ($appointment->count() <= 0)
-                                        <td colspan="6" class="text-center">Tidak Ada Data</td>
-                                        @else
-                                        @foreach ($appointment as $app)
-                                            <td>{{ $app->tiket }}</td>
-                                            <td>{{ $app->jam }}</td>
-                                            <td>{{ $app->pasien->nama_lengkap }}</td>
-                                            <td>{{ $app->user->name }}</td>
-                                            <td>{{ $app->status }}</td>
-                                            <td align="center" class="d-flex justify-content-evenly">
-                                                <button onclick="editForm(`{{ route('appointment.update', $app->id) }}`, `{{ $app->id }}`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
-                                                <button onclick="deleteData(`{{ route('appointment.destroy', $app->id) }}`)" class="btn btn-xs btn-danger btn-flat"><i class="bi bi-trash"></i></button>
-                                            </td>
-                                        @endforeach
-                                        @endif
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                             <div class="col-md-12">
-                                <h4 class="text-center">Semua AppointMent Berjalan</h4>
+                                {{-- <h4 class="text-center">Semua AppointMent</h4> --}}
                                 <div class="box-body table-responsive">
                                     <table id="table" class="table table-stiped table-bordered">
                                         <thead>
@@ -104,7 +72,7 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('appointment.create') }}',
+                    url: '{{ route('services.appointment_all') }}',
                 },
                 columns: [{
                         data: 'tiket',

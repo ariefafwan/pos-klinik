@@ -22,7 +22,7 @@ class TransaksiController extends Controller
 
     public function data()
     {
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::where('type', 'Pembelian')->get();
 
         return DataTables::of($transaksi)
             ->addIndexColumn()
@@ -57,6 +57,7 @@ class TransaksiController extends Controller
         $transaksi->invoice = $invoice;
         $transaksi->tanggal = Carbon::now();
         $transaksi->total_item = 0;
+        $transaksi->type = 'Pembelian';
         $transaksi->total_harga = 0;
         $transaksi->pemasukan = 0;
         $transaksi->save();
@@ -70,7 +71,7 @@ class TransaksiController extends Controller
     {
         // dd(session('id_transaksi'));
         $page = "Tambah Transaksi";
-        $produk = Product::all()->where('stock', '>', 0);
+        $produk = Product::all()->where('kategori', 'barang')->where('stock', '>', 0);
         $transaksi = Transaksi::find($id);
         $id_transaksi = $transaksi->id;
         return view('apoteker.transaksi.create', compact('page', 'produk', 'id_transaksi'));

@@ -8,7 +8,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doktor\DoktorController;
 use App\Http\Controllers\Services\AppointmentController;
 use App\Http\Controllers\Services\PasienController;
+use App\Http\Controllers\Services\ProdutJasaController;
 use App\Http\Controllers\Services\ServicesController;
+use App\Http\Controllers\Services\TransaksiContoller;
+use App\Http\Controllers\Services\TransaksiItemServicesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/apoteker/product/delete/{id}', [ApotekerController::class, 'deleteproduct'])->name('product.delete');
 
         //categori Product
-        Route::resource('/apoteker/categoriproduct', CategoriController::class);
+        // Route::resource('/apoteker/categoriproduct', CategoriController::class);
 
         //transaksi pembelian
         Route::get('/apoteker/transaksi-pembelian', [TransaksiController::class, 'index'])->name('transaksi.index');
@@ -67,6 +70,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/doktor/jadwal/today/data', [DoktorController::class, 'datatoday'])->name('data.today');
         Route::get('/doktor/jadwal/all', [DoktorController::class, 'jadwalall'])->name('jadwal.all');
         Route::get('/doktor/jadwal/all/data', [DoktorController::class, 'dataall'])->name('data.all');
+        Route::get('/doktor/diagnosapasien/{id}', [DoktorController::class, 'diagnosapasien'])->name('diagnosapasien');
+
+        Route::get('/pilihjasa', [DoktorController::class, 'pilihjasa'])->name('pilihjasa');
+        Route::get('/pilihproduct', [DoktorController::class, 'pilihproduct'])->name('pilihproduct');
 
         //create diagnosa
         Route::get('/doktor/diagnosa/create/{id}', [DoktorController::class, 'diagnosauser'])->name('diagnosa.create');
@@ -78,7 +85,26 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/services/dashboard', [ServicesController::class, 'dashboard'])->name('services.index');
         Route::resource('/services/pasien', PasienController::class);
         Route::resource('/services/appointment', AppointmentController::class);
+        Route::get('/services//all/appointment', [ServicesController::class, 'appointment_all'])->name('services.appointment_all');
         Route::get('/services/appointment/pasien/{id}', [ServicesController::class, 'getpasien'])->name('servces.getpasien');
+
+        //jasa controller
+        Route::get('/services/jasa', [ProdutJasaController::class, 'jasa'])->name('jasa.index');
+        Route::post('/services/jasa/store', [ProdutJasaController::class, 'storejasa'])->name('jasa.store');
+        Route::get('/services/jasa/edit/{id}', [ProdutJasaController::class, 'editjasa'])->name('jasa.edit');
+        Route::put('/services/jasa/update/{id}', [ProdutJasaController::class, 'updatejasa'])->name('jasa.update');
+        Route::delete('/services/jasa/delete/{id}', [ProdutJasaController::class, 'deletejasa'])->name('jasa.delete');
+
+        Route::get('/services/transaksi-berobat', [TransaksiContoller::class, 'index'])->name('services-transaksi.index');
+        Route::post('/services/transaksi/store', [TransaksiContoller::class, 'store'])->name('services-transaksi.store');
+        Route::post('/services/transaksi/update', [TransaksiContoller::class, 'update'])->name('services-transaksi.update');
+        Route::get('/services/transaksi/data', [TransaksiContoller::class, 'data'])->name('services-transaksi.data');
+        Route::get('/services/transaksiberobat/create/{id}', [TransaksiContoller::class, 'create'])->name('services-transaksi.create');
+        Route::post('/services/transaksiitem/store', [TransaksiItemServicesController::class, 'store'])->name('services-transaksiitem.store');
+        Route::get('/services/transaksiitem/data/{id}', [TransaksiItemServicesController::class, 'data'])->name('services-transaksiitem.data');
+        Route::get('/services/transaksiitem/datajasa/{id}', [TransaksiItemServicesController::class, 'datajasa'])->name('services-transaksiitem.datajasa');
+        Route::delete('/services/transaksiitem/delete/{id}', [TransaksiItemServicesController::class, 'destroy'])->name('services-transaksiitem.destroy');
+        Route::get('/services/transaksi/loadform/{id}', [TransaksiItemServicesController::class, 'loadForm'])->name('services-transaksi.loadform');
     });
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');

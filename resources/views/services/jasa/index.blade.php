@@ -1,5 +1,4 @@
-@extends('apoteker.partials.app')
-
+@extends('services.partials.app')
 @section('body')
 
 @if($errors->any())
@@ -21,27 +20,28 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <button onclick="addForm('{{ route('categoriproduct.store') }}')"
+                            <button onclick="addForm('{{ route('jasa.store') }}')"
                                 class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah</button>
                         </div>
                     </div>
                     <hr>
-                    @include('apoteker.categori.create')
+                    @include('services.jasa.create')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-body table-responsive">
                                 <table class="table table-stiped table-bordered">
                                     <thead>
                                         <th width="5%">No</th>
-                                        <th>Nama Kategori Produk</th>
+                                        <th>Nama Jasa</th>
+                                        <th>Biaya Jasa</th>
                                         <th>Aksi</th>
                                     </thead>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    @include('apoteker.categori.edit')
-                    <form id="categori-delete"
+                    @include('services.jasa.edit')
+                    <form id="jasa-delete"
                         action="" method="POST"
                         style="display: none;">
                         @csrf
@@ -57,21 +57,12 @@
     <script>
         let table;
 
-        function filterData() {
-            $('.table').DataTable().search(
-                $('.tipe').val()
-            ).draw();
-        }
-        $('.tipe').on('change', function () {
-            filterData();
-        });
-
         $(function () {
             table = $('.table').DataTable({
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('categoriproduct.create') }}',
+                    url: '{{ route('jasa.index') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -80,6 +71,9 @@
                     },
                     {
                         data: 'name'
+                    },
+                    {
+                        data: 'biaya'
                     },
                     {
                         data: 'aksi',
@@ -92,42 +86,39 @@
 
         function addForm(url) {
             $('#modal-create').modal('show');
-            $('#modal-create .modal-title').text('Tambah Kategori Product');
+            $('#modal-create .modal-title').text('Tambah Jasa');
 
             $('#modal-create form')[0].reset();
             $('#modal-create form').attr('action', url);
             $('#modal-create [name=_method]').val('post');
-            $('#modal-create #nama_kategori').focus();
+            $('#modal-create #name').focus();
         }
 
         function editForm(url, id) {
             console.log(id)
             $('#modal-edit').modal('show');
-            $('#modal-edit .modal-title').text('Edit Kategori');
+            $('#modal-edit .modal-title').text('Edit Jasa');
             $('#modal-edit form')[0].reset();
             $('#modal-edit form').attr('action', url);
-            $('#modal-edit #editnama_kategori').focus();
+            $('#modal-edit #editnama_jasa').focus();
             let editid = id
             $.ajax({
-                url: '/apoteker/categoriproduct/'+editid,
+                url: '/services/jasa/edit/'+editid,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data)
                 {
                     $('#editid').val(data.id);
-                    $('#editnama_kategori').val(data.name);
+                    $('#editnama_jasa').val(data.name);
+                    $('#editbiaya').val(data.biaya);
                 }
             })
         }
 
         function deleteData(url) {
-            // $.post(url, {
-            //             '_token': $('[name=csrf-token]').attr('content'),
-            //             '_method': 'delete'
-            //         });
-            $('#categori-delete').attr('action', url)
+            $('#jasa-delete').attr('action', url)
             event.preventDefault();
-            $('#categori-delete').submit();
+            $('#jasa-delete').submit();
         }
     </script>
 @endpush

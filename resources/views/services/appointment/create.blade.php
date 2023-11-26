@@ -31,7 +31,7 @@
                     <div class="mb-3">
                         <label for="pasien_id" class="form-label fw-bold">Pasien</label>
                         <div class="input-group has-validation">
-                            <select class="form-select" id="pasien_id" name="pasien_id" aria-label="Default select example">
+                            <select class="form-select select2" id="pasien_id" name="pasien_id" aria-label="Default select example">
                                 <option selected>Pilih Pasien</option>
                                 @foreach ($pasien as $pas)
                                     <option value="{{ $pas->id }}">{{ $pas->nik }} - {{ $pas->nama_lengkap }}</option>
@@ -45,7 +45,7 @@
                     <div class="mb-3">
                         <label for="user_id" class="form-label fw-bold">Doktor</label>
                         <div class="input-group has-validation">
-                            <select class="form-select" id="user_id" name="user_id" aria-label="Default select example">
+                            <select class="form-select select2" id="user_id" name="user_id" aria-label="Default select example">
                                 <option selected>Pilih Doktor</option>
                                 @foreach ($doktor as $dok)
                                     <option value="{{ $dok->id }}">{{ $dok->name }}</option>

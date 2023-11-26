@@ -11,12 +11,22 @@
                 <div class="modal-body">
                     <input type="hidden" id="editid" name="id">
                     <div class="mb-3">
-                        <label for="editnama_kategori" class="form-label fw-bold">Nama Kategori Produk</label>
+                        <label for="editnama_jasa" class="form-label fw-bold">Nama Jasa</label>
                         <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="editnama_kategori" name="name"
-                                placeholder="Masukkan Nama Produk..." required autofocus>
+                            <input type="text" class="form-control" id="editnama_jasa" name="name"
+                                placeholder="Masukkan Nama Jasa..." required autofocus>
                             <div class="invalid-feedback">
-                                Invalid Nama Kategori Produk
+                                Invalid Nama Jasa
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editbiaya" class="form-label fw-bold">Biaya Jasa</label>
+                        <div class="input-group has-validation">
+                            <input type="number" min="0" class="form-control" id="editbiaya" name="biaya"
+                                placeholder="Masukkan Biaya Jasa..." required autofocus>
+                            <div class="invalid-feedback">
+                                Invalid Biaya Jasa
                             </div>
                         </div>
                     </div>
