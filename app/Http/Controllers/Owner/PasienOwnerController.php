@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Services;
+namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pasien;
 use Illuminate\Http\Request;
+use App\Models\Pasien;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
-class PasienController extends Controller
+class PasienOwnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $page = "Daftar Pasien";
-        return view('services.pasien.index', compact('page'));
+        return view('admin.pasien.index', compact('page'));
     }
 
     /**
@@ -36,8 +33,8 @@ class PasienController extends Controller
             ->addColumn('aksi', function ($pasien) {
                 return '
                 <div class="d-flex justify-content-evenly">
-                    <button onclick="editForm(`' . route('pasien.update', $pasien->id) . '` , `' . ($pasien->id) . '`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
-                    <button onclick="deleteData(`' . route('pasien.destroy', $pasien->id) . '`)" class="btn btn-xs btn-danger btn-flat"><i class="bi bi-trash"></i></button>
+                    <button onclick="editForm(`' . route('admin-pasien.update', $pasien->id) . '` , `' . ($pasien->id) . '`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
+                    <button onclick="deleteData(`' . route('admin-pasien.destroy', $pasien->id) . '`)" class="btn btn-xs btn-danger btn-flat"><i class="bi bi-trash"></i></button>
                     <button onclick="showUser(`' . ($pasien->id) . '`)" class="btn btn-xs btn-warning btn-flat"><i class="bi bi-eye"></i></button>
                 </div>
                 ';

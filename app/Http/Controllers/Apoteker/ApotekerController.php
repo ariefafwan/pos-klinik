@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Categori;
 use App\Models\Product;
+use App\Models\Transaksi;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
@@ -14,7 +16,14 @@ class ApotekerController extends Controller
     public function dashboard()
     {
         $page = 'Dashboard Apoteker';
-        return view('apoteker.dashboard', compact('page'));
+        // $appointment_today = count(Appointment::all()->where('status', 'Berjalan')->where('tanggal', Carbon::now()->format('Y-m-d')));
+        // $total_appointment = count(Appointment::get());
+        $pemasukan_bulanan = Transaksi::where('type', 'Pembelian')->whereMonth('tanggal', Carbon::now()->month)->get();
+        $pembelian_bulanan = count(Transaksi::where('type', 'Pembelian')->whereMonth('tanggal', Carbon::now()->month)->get());
+        $pembelian_harian = count(Transaksi::where('type', 'Pembelian')->where('tanggal', Carbon::now()->format('Y-m-d'))->get());
+        $total_bulanan = $pemasukan_bulanan->sum('pemasukan');
+        // $total_harian = $pemasukan_harian->sum('pemasukan');
+        return view('apoteker.dashboard', compact('page', 'total_bulanan', 'pembelian_bulanan', 'pembelian_harian'));
     }
 
     public function product()

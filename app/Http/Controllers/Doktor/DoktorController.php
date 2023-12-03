@@ -20,7 +20,12 @@ class DoktorController extends Controller
     public function dashboard()
     {
         $page = 'Dashboard Doktor';
-        return view('doktor.dashboard', compact('page'));
+        // $pemasukan_bulanan = Transaksi::where('type', 'Berobat')->whereMonth('tanggal', Carbon::now()->month)->get();
+        $appointment_today = count(Appointment::all()->where('user_id', Auth::user()->id)->where('tanggal', Carbon::now()->format('Y-m-d')));
+        $appointment_bulanan = count(Appointment::whereMonth('tanggal', Carbon::now()->month)->get());
+        // $total_bulanan = $pemasukan_bulanan->sum('pemasukan');
+        return view('doktor.dashboard', compact('page', 'appointment_today', 'appointment_bulanan'));
+        // return view('doktor.dashboard', compact('page'));
     }
 
     public function jadwaltoday()
@@ -41,7 +46,7 @@ class DoktorController extends Controller
                 return '
                 <div class="d-flex justify-content-evenly">
                     <a href="/doktor/diagnosa/berlangsung/' . $today->id . '" class="btn btn-xs btn-info btn-flat"><i class="bi bi-plus"></i></a>
-                    <button onclick="showUser(`' . ($today->user_id) . '`)" class="btn btn-xs btn-warning btn-flat"><i class="bi bi-eye"></i></button>
+                    <button onclick="showUser(`' . ($today->pasien_id) . '`)" class="btn btn-xs btn-warning btn-flat"><i class="bi bi-eye"></i></button>
                 </div>
                 ';
             })
@@ -49,9 +54,9 @@ class DoktorController extends Controller
             ->make(true);
     }
 
-    public function diagnosapasien($user_id)
+    public function diagnosapasien($pasien_id)
     {
-        $hasil = Diagnosa::with('appointment')->where('user_id', $user_id)->orderBy('created_at', 'asc')->limit(5)->get();
+        $hasil = Diagnosa::with('appointment')->where('pasien_id', $pasien_id)->orderBy('created_at', 'asc')->limit(5)->get();
         return json_encode($hasil);
     }
 

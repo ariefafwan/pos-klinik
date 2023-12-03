@@ -23,27 +23,37 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(RoleSeeder::class);
+        // $this->call(RoleSeeder::class);
 
-        User::Create([
-            'name' => 'apotek',
-            'email' => 'apotek@gmail.com',
-            'password' => Hash::make('password'),
-            'role_id' => 1
+        // User::Create([
+        //     'name' => 'apotek',
+        //     'email' => 'apotek@gmail.com',
+        //     'password' => Hash::make('password'),
+        //     'role_id' => 1
+        // ]);
+
+        // User::Create([
+        //     'name' => 'doktor',
+        //     'email' => 'doktor@gmail.com',
+        //     'password' => Hash::make('password'),
+        //     'role_id' => 2
+        // ]);
+
+        // User::Create([
+        //     'name' => 'services',
+        //     'email' => 'services@gmail.com',
+        //     'password' => Hash::make('password'),
+        //     'role_id' => 3
+        // ]);
+        Role::Create([
+            'name' => 'Owner'
         ]);
 
         User::Create([
-            'name' => 'doktor',
-            'email' => 'doktor@gmail.com',
+            'name' => 'owner',
+            'email' => 'owner@gmail.com',
             'password' => Hash::make('password'),
-            'role_id' => 2
-        ]);
-
-        User::Create([
-            'name' => 'services',
-            'email' => 'services@gmail.com',
-            'password' => Hash::make('password'),
-            'role_id' => 3
+            'role_id' => 4
         ]);
     }
 }

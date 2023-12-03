@@ -1,4 +1,4 @@
-@extends('services.partials.app')
+@extends('admin.partials.app')
 @section('body')
 
 @if($errors->any())
@@ -19,32 +19,29 @@
             <div class="card-body">
                 <div class="container mt-3">
                     <div class="row">
-                        {{-- <div class="col-md-8">
-                            <form action="{{ route('services-transaksi.store') }}" method="POST">
-                                @csrf
-                                @method('post')
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Transaksi</button>
-                            </form>
-                        </div> --}}
+                        <div class="col-md-8">
+                            <button onclick="addForm('{{ route('admin-users.store') }}')"
+                                class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah User</button>
+                        </div>
                     </div>
                     <hr>
+                    @include('admin.users.create')
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-12">
-                                <div class="box-body table-responsive">
-                                    <table class="table table-stiped table-bordered">
-                                        <thead>
-                                            <th width="5%">No</th>
-                                            <th>Invoice</th>
-                                            <th>Total Harga</th>
-                                            <th>Pemasukan</th>
-                                            <th>Aksi</th>
-                                        </thead>
-                                    </table>
-                                </div>
+                            <div class="box-body table-responsive">
+                                <table class="table table-stiped table-bordered">
+                                    <thead>
+                                        <th width="5%">No</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Roles</th>
+                                        <th>Aksi</th>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
+                    {{-- @include('admin.users.edit') --}}
                     <form id="data-delete"
                         action="" method="POST"
                         style="display: none;">
@@ -66,7 +63,7 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('services-transaksi.data') }}',
+                    url: '{{ route('admin-users.index') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -74,13 +71,13 @@
                         sortable: false
                     },
                     {
-                        data: 'invoice'
+                        data: 'name'
                     },
                     {
-                        data: 'total_harga'
+                        data: 'email'
                     },
                     {
-                        data: 'pemasukan'
+                        data: 'role.name'
                     },
                     {
                         data: 'aksi',
@@ -91,8 +88,19 @@
             });
         });
 
-        function pembayaran(url) {
-            location.href = url;
+        function addForm(url) {
+            $('#modal-create').modal('show');
+            $('#modal-create .modal-title').text('Tambah User');
+
+            $('#modal-create form')[0].reset();
+            $('#modal-create form').attr('action', url);
+            $('#modal-create [name=_method]').val('post');
+        }
+
+        function deleteData(url) {
+            $('#data-delete').attr('action', url)
+            event.preventDefault();
+            $('#data-delete').submit();
         }
     </script>
 @endpush

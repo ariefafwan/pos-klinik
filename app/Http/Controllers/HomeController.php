@@ -31,6 +31,8 @@ class HomeController extends Controller
             return redirect()->to('doktor/dashboard');
         } else if ($role == 3) {
             return redirect()->to('services/dashboard');
+        } else if ($role == 4) {
+            return redirect()->to('admin/dashboard');
         } else {
             return redirect()->to('logout');
         }

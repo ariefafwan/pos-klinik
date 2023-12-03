@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Services;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Pasien;
+use App\Models\Transaksi;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
@@ -15,7 +17,11 @@ class ServicesController extends Controller
     public function dashboard()
     {
         $page = 'Dashboard Services';
-        return view('services.dashboard', compact('page'));
+        $pemasukan_bulanan = Transaksi::where('type', 'Berobat')->whereMonth('tanggal', Carbon::now()->month)->get();
+        $appointment_today = count(Appointment::all()->where('tanggal', Carbon::now()->format('Y-m-d')));
+        $appointment_bulanan = count(Appointment::whereMonth('tanggal', Carbon::now()->month)->get());
+        $total_bulanan = $pemasukan_bulanan->sum('pemasukan');
+        return view('services.dashboard', compact('page', 'appointment_today', 'appointment_bulanan', 'total_bulanan'));
     }
 
     public function appointment_all(Request $request)

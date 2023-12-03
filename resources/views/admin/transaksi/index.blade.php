@@ -1,4 +1,4 @@
-@extends('services.partials.app')
+@extends('admin.partials.app')
 @section('body')
 
 @if($errors->any())
@@ -18,16 +18,16 @@
         <div class="card">
             <div class="card-body">
                 <div class="container mt-3">
-                    <div class="row">
-                        {{-- <div class="col-md-8">
-                            <form action="{{ route('services-transaksi.store') }}" method="POST">
+                    {{-- <div class="row">
+                        <div class="col-md-8">
+                            <form action="{{ route('admin-transaksi-jasa.store') }}" method="POST">
                                 @csrf
                                 @method('post')
                                 <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Transaksi</button>
                             </form>
-                        </div> --}}
+                        </div>
                     </div>
-                    <hr>
+                    <hr> --}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-12">
@@ -66,7 +66,7 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('services-transaksi.data') }}',
+                    url: '{{ route('admin-transaksi-jasa.data') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',

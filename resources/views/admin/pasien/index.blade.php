@@ -1,4 +1,4 @@
-@extends('services.partials.app')
+@extends('admin.partials.app')
 @section('body')
 
 @if($errors->any())
@@ -20,12 +20,12 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <button onclick="addForm('{{ route('pasien.store') }}')"
+                            <button onclick="addForm('{{ route('admin-pasien.store') }}')"
                                 class="btn btn-primary"><i class="bi bi-plus-circle"></i>&nbsp;Tambah Pasien</button>
                         </div>
                     </div>
                     <hr>
-                    @include('services.pasien.create')
+                    @include('admin.pasien.create')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-body table-responsive">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    @include('services.pasien.edit')
+                    @include('admin.pasien.edit')
                     <form id="data-delete"
                         action="" method="POST"
                         style="display: none;">
@@ -86,7 +86,7 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('pasien.create') }}',
+                    url: '{{ route('admin-pasien.create') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -134,7 +134,7 @@
 
         function showUser(id_user) {
             $.ajax({
-                url: '/services/diagnosapasien/'+id_user,
+                url: '/admin/diagnosapasien/'+id_user,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data)
@@ -166,7 +166,7 @@
             $('#modal-edit form').attr('action', url);
             let editid = id
             $.ajax({
-                url: '/services/pasien/'+editid,
+                url: '/admin/pasien/'+editid,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data)

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apoteker;
+namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -11,13 +11,13 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
-class TransaksiController extends Controller
+class TransaksiOwnerController extends Controller
 {
     public function index()
     {
         $page = "Daftar Transaksi";
         $transaksi = Transaksi::where('type', 'Pembelian');
-        return view('apoteker.transaksi.index', compact('transaksi', 'page'));
+        return view('admin.transaksi-product.index', compact('transaksi', 'page'));
     }
 
     public function data()
@@ -29,7 +29,7 @@ class TransaksiController extends Controller
             ->addColumn('aksi', function ($transaksi) {
                 return '
                 <div class="d-flex justify-content-evenly">
-                <button onclick="addForm(`' . route('transaksi.create', $transaksi->id) . '`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
+                <button onclick="addForm(`' . route('admin-transaksi-product.create', $transaksi->id) . '`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
                 </div>
                 ';
             })
@@ -46,7 +46,7 @@ class TransaksiController extends Controller
         $transaksi->save();
 
         Alert::success('Informasi Pesan', "Sukses Menambahkan Transaksi");
-        return redirect()->route('transaksi.index');
+        return redirect()->route('admin-transaksi-product.index');
     }
 
     public function store()
@@ -64,7 +64,7 @@ class TransaksiController extends Controller
 
         session(['id_transaksi' => $transaksi->id]);
 
-        return redirect()->route('transaksi.create', $transaksi->id);
+        return redirect()->route('admin-transaksi-product.create', $transaksi->id);
     }
 
     public function create($id)
@@ -74,6 +74,12 @@ class TransaksiController extends Controller
         $produk = Product::all()->where('kategori', 'Barang')->where('stock', '>', 0);
         $transaksi = Transaksi::find($id);
         $id_transaksi = $transaksi->id;
-        return view('apoteker.transaksi.create', compact('page', 'produk', 'id_transaksi'));
+        return view('admin.transaksi-product.create', compact('page', 'produk', 'id_transaksi'));
+        // if ($id_transaksi = session('id_transaksi')) {
+
+        //     // dd($total_bayar);
+        // } else {
+        //     abort(404);
+        // }
     }
 }

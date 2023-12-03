@@ -1,45 +1,62 @@
-<!-- Modal Untuk Tambah Data -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-            <form class="col-lg-12" action="{{ route('product.update' ) }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" class="form-control" id="editid" name="id">
-                <div class="mb-3">
-                    <label for="editname" class="form-label fw-bold">Nama Produk</label>
-                    <input type="text" class="form-control" id="editname" name="name" placeholder="Masukkan Nama Produk...">
+<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="modal-edit">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="" method="POST" class="col-lg-12" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="mb-3">
-                    <label for="edittype" class="form-label fw-bold">Tipe Produk</label>
-                    <select class="form-select" id="edittype" name="type" aria-label="Default select example">
-                        <option selected>Pilih Tipe Produk</option>
-                        <option value="Barang">Barang</option>
-                        <option value="Service">Service</option>
-                    </select>
+                <div class="modal-body">
+                    <input type="hidden" id="editid" name="id">
+                    <div class="mb-3">
+                        <label for="editnama_produk" class="form-label fw-bold">Nama Produk</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="editnama_produk" name="name"
+                                placeholder="Masukkan Nama Produk..." required autofocus>
+                            <div class="invalid-feedback">
+                                Invalid Nama Produk
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editharga_jual" class="form-label fw-bold">Harga Jual</label>
+                        <div class="input-group has-validation">
+                            <input type="number" class="form-control" id="editharga_jual" name="harga_jual"
+                                placeholder="Masukkan Harga Produk...">
+                            <div class="invalid-feedback">
+                                Invalid Harga Jual Produk
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editharga_beli" class="form-label fw-bold">Harga Beli</label>
+                        <div class="input-group has-validation">
+                            <input type="number" class="form-control" id="editharga_beli" name="harga_beli"
+                                placeholder="Masukkan Harga Produk...">
+                            <div class="invalid-feedback">
+                                Invalid Harga Beli Produk
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editstock" class="form-label fw-bold">Stock</label>
+                        <div class="input-group has-validation">
+                            <input type="number" class="form-control" id="editstock" name="stock"
+                                placeholder="Masukkan Stock Produk...">
+                            <div class="invalid-feedback">
+                                Invalid Stock Produk
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="edithargabeli" class="form-label fw-bold">Harga</label>
-                    <input type="number" class="form-control" id="edithargabeli" name="harga_beli" placeholder="Masukkan Harga Produk...">
-                </div>
-                <div class="mb-3">
-                    <label for="edithargajual" class="form-label fw-bold">Harga</label>
-                    <input type="number" class="form-control" id="edithargajual" name="harga_jual" placeholder="Masukkan Harga Produk...">
-                </div>
-                <div class="mb-3">
-                    <label for="editstock" class="form-label fw-bold">Stock</label>
-                    <input type="number" class="form-control" id="editstock" name="stock" placeholder="Masukkan Stock Produk...">
-                </div>
-        </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i>&nbspClose</button>
-                    <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>&nbspSubmit</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+                            class="bi bi-x-circle"></i>&nbspClose</button>
+                    <button class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>&nbspSubmit</button>
                 </div>
-            </form>
-    </div>
+            </div>
+        </form>
     </div>
 </div>
