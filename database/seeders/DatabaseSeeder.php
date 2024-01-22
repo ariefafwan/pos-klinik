@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ProfileWeb;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -45,15 +46,20 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('password'),
         //     'role_id' => 3
         // ]);
-        Role::Create([
-            'name' => 'Owner'
-        ]);
+        // Role::Create([
+        //     'name' => 'Owner'
+        // ]);
 
-        User::Create([
-            'name' => 'owner',
-            'email' => 'owner@gmail.com',
-            'password' => Hash::make('password'),
-            'role_id' => 4
+        // User::Create([
+        //     'name' => 'owner',
+        //     'email' => 'owner@gmail.com',
+        //     'password' => Hash::make('password'),
+        //     'role_id' => 4
+        // ]);
+        ProfileWeb::Create([
+            'name' => 'Klinik Ganteng',
+            'alamat' => 'Darussalam, Lhokseumawe',
+            'logo' => 'logo.png'
         ]);
     }
 }

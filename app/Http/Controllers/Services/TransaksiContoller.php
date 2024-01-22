@@ -28,6 +28,7 @@ class TransaksiContoller extends Controller
                 return '
                 <div class="d-flex justify-content-evenly">
                 <button onclick="pembayaran(`' . route('services-transaksi.create', $transaksi->id) . '`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
+                <button onclick="cetakinvoice(`' . route('cetakinvoice', $transaksi->id) . '`)" class="btn btn-xs btn-success btn-flat"><i class="bi bi-printer"></i></button>
                 </div>
                 ';
             })

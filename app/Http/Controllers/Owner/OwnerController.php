@@ -9,10 +9,12 @@ use App\Models\Product;
 use App\Models\Pasien;
 use App\Models\User;
 use App\Models\Appointment;
+use App\Models\ProfileWeb;
 use App\Models\Transaksi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class OwnerController extends Controller
@@ -36,6 +38,35 @@ class OwnerController extends Controller
                 ->make(true);
         }
         return view('admin.dashboard', compact('page', 'total_appointment', 'appointment_today', 'total_pemasukan'));
+    }
+
+    public function settingtoko()
+    {
+        $toko = ProfileWeb::first();
+        $page = "Setting Toko";
+        return view('admin.setting.index', compact('page', 'toko'));
+    }
+
+    public function updatetoko(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'alamat' => 'required',
+            'logo' => 'required|mimes:png,jpg,jpeg|max:4000'
+        ]);
+
+        $toko = ProfileWeb::findOrFail($request->id);
+        $toko->name = $request->name;
+        $toko->alamat = $request->alamat;
+        Storage::delete('public/Invoice/' . $toko->logo);
+        $file = $request->file('logo');
+        $filename = $file->getClientOriginalName();
+        $file->storeAs('public/Invoice/', $filename);
+        $toko->logo = $filename;
+        $toko->save();
+
+        Alert::success("Informasi Pesan", 'Berhasil Mengupdate Profile Toko');
+        return redirect()->route('setting.index');
     }
 
     public function pemasukan(Request $request)

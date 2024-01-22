@@ -12,7 +12,12 @@
     <!-- End Dashboard Nav -->
 
     <li class="nav-heading">Menu</li>
-
+    <li class="nav-item">
+      <a class="@if (Route::is('setting.index')) nav-link @else nav-link collapsed @endif" href="{{ route('setting.index') }}">
+        <i class="bi bi-buildings"></i>
+        <span>Profile Toko</span>
+      </a>
+    </li>
     <li class="nav-item">
       <a class="@if (Route::is('admin-users.index')) nav-link @else nav-link collapsed @endif" href="{{ route('admin-users.index') }}">
         <i class="bi bi-buildings"></i>

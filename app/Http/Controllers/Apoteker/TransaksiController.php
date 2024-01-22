@@ -30,6 +30,7 @@ class TransaksiController extends Controller
                 return '
                 <div class="d-flex justify-content-evenly">
                 <button onclick="addForm(`' . route('transaksi.create', $transaksi->id) . '`)" class="btn btn-xs btn-info btn-flat"><i class="bi bi-pencil"></i></button>
+                <button onclick="cetakinvoice(`' . route('cetakinvoice', $transaksi->id) . '`)" class="btn btn-xs btn-success btn-flat"><i class="bi bi-printer"></i></button>
                 </div>
                 ';
             })

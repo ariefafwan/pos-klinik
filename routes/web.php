@@ -5,6 +5,7 @@ use App\Http\Controllers\Apoteker\CategoriController;
 use App\Http\Controllers\Apoteker\TransaksiController;
 use App\Http\Controllers\Apoteker\TransaksiItemController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CetakInvoiceController;
 use App\Http\Controllers\Doktor\DoktorController;
 use App\Http\Controllers\Owner\AppointmentOwnerController;
 use App\Http\Controllers\Owner\OwnerController;
@@ -120,6 +121,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/dashboard', [OwnerController::class, 'dashboard'])->name('admin.index');
         Route::get('/admin/dashboard/pemasukan', [OwnerController::class, 'pemasukan'])->name('admin-pemasukan.total');
 
+        Route::get('/admin/profile', [OwnerController::class, 'settingtoko'])->name('setting.index');
+        Route::post('/admin/profile', [OwnerController::class, 'updatetoko'])->name('setting.update');
+        // Route::get('/admin/users/destroy/{id}', [OwnerController::class, 'destroy_user'])->name('admin-users.destroy');
+
         Route::get('/admin/users', [OwnerController::class, 'user'])->name('admin-users.index');
         Route::post('/admin/users/store', [OwnerController::class, 'store_user'])->name('admin-users.store');
         Route::get('/admin/users/destroy/{id}', [OwnerController::class, 'destroy_user'])->name('admin-users.destroy');
@@ -183,6 +188,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/admin/transaksi-item-pembelian/delete/{id}', [TransaksiItemOwnerController::class, 'destroy'])->name('admin-transaksiitem-product.destroy');
         Route::get('/admin/transaksi-pembelian/loadform/{id}', [TransaksiItemOwnerController::class, 'loadForm'])->name('admin-transaksi.loadform');
     });
+
+    Route::get('/cetakpdf/{id}', [CetakInvoiceController::class, 'cetakpdf'])->name('cetakinvoice');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });

@@ -94,5 +94,9 @@
         function pembayaran(url) {
             location.href = url;
         }
+        function cetakinvoice(url) {
+            // location.href = url;
+            window.open(url, '_blank');
+        }
     </script>
 @endpush

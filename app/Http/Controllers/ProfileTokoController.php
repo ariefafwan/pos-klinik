@@ -20,6 +20,7 @@ class ProfileTokoController extends Controller
         $request->validate([
             'name' => 'required',
             'alamat' => 'required',
+            'logo' => 'required|mimes:png,jpg,jpeg|max:4000'
         ]);
 
         $toko = ProfileWeb::findOrFail($request->id);
